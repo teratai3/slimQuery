@@ -24,6 +24,7 @@
                 }
             }
 
+            this.length = this.#elements.length;
         }
 
         _getElements() {
@@ -52,6 +53,13 @@
             SlimQuery.prototype[name] = method;
         }
     }
+
+    // //静的メソッド
+    // Object.defineProperty(SlimQuery.prototype, 'length', {
+    //     get: function () {
+    //         return this._getElements().length;
+    //     }
+    // });
 
     // SlimQueryクラスをインスタンス化するためのラッパー関数
     const createSlimQuery = selector => new SlimQuery(selector);
