@@ -1,7 +1,7 @@
-const { SlimQuery } = require('../slimquery-core.js');
+const { SlimQuery: $ } = require('../slimquery-core.js');
 // 属性やコンテンツの取得・設定に関連するメソッド
 
-SlimQuery.prototype.text = function (value) {
+$.prototype.text = function (value) {
     if (value === undefined) {
         return this.elements[0]?.textContent;
     } else {
@@ -11,7 +11,7 @@ SlimQuery.prototype.text = function (value) {
     }
 };
 
-SlimQuery.prototype.html = function (value) {
+$.prototype.html = function (value) {
     if (value === undefined) {
         return this.elements[0]?.innerHTML;
     } else {
@@ -23,7 +23,7 @@ SlimQuery.prototype.html = function (value) {
 
 
 
-SlimQuery.prototype.val = function (selector) {
+$.prototype.val = function (selector) {
     if (value === undefined) {
         return element.elements[0]?.value ? element.elements[0].value : "";
     } else {
@@ -34,7 +34,7 @@ SlimQuery.prototype.val = function (selector) {
 };
 
 
-SlimQuery.prototype.attr = function (name, value) {
+$.prototype.attr = function (name, value) {
     if (value === undefined) {
         const element = this.elements && this.elements.length > 0 ? this.elements[0] : undefined;
         return element ? element.getAttribute(name) : undefined;
@@ -46,7 +46,7 @@ SlimQuery.prototype.attr = function (name, value) {
 };
 
 
-SlimQuery.prototype.data = function (name, value) {
+$.prototype.data = function (name, value) {
     if (value === undefined) {
         const element = this._getElements()[0];
         if (element) {
@@ -60,13 +60,13 @@ SlimQuery.prototype.data = function (name, value) {
     }
 };
 
-SlimQuery.prototype.removeAttr = function (name) {
+$.prototype.removeAttr = function (name) {
     return this.each(element => {
         element.removeAttribute(name);
     });
 };
 
-SlimQuery.prototype.prop = function (name, value) {
+$.prototype.prop = function (name, value) {
     if (value === undefined) {
         // 値が指定されていない場合、最初の要素のプロパティを取得して返す
         const element = this.elements && this.elements.length > 0 ? this.elements[0] : undefined;
@@ -82,15 +82,15 @@ SlimQuery.prototype.prop = function (name, value) {
     }
 };
 
-SlimQuery.prototype.removeProp = function (name) {
+$.prototype.removeProp = function (name) {
     //jquery互換性のためremoveProp実装
     return this.removeAttr(name);
 };
 
-SlimQuery.prototype.wrap = function(wrapper) {
+$.prototype.wrap = function (wrapper) {
     return this.each(element => {
         let wrapperElement;
-        
+
         if (typeof wrapper === 'string') {
             // HTML文字列から要素を作成
             const tempDiv = document.createElement('div');
@@ -114,7 +114,7 @@ SlimQuery.prototype.wrap = function(wrapper) {
 };
 
 
-SlimQuery.prototype.height = function (value) {
+$.prototype.height = function (value) {
     if (value === undefined) {
         // 値が指定されていない場合、高さを取得
         const element = this.elements && this.elements.length > 0 ? this.elements[0] : undefined;
@@ -131,7 +131,7 @@ SlimQuery.prototype.height = function (value) {
 };
 
 
-SlimQuery.prototype.width = function (value) {
+$.prototype.width = function (value) {
     const element = this._getElements() && this._getElements().length > 0 ? this._getElements()[0] : undefined;
 
     if (value === undefined) {
@@ -153,7 +153,7 @@ SlimQuery.prototype.width = function (value) {
 };
 
 
-SlimQuery.prototype.height = function (value) {
+$.prototype.height = function (value) {
     const element = this._getElements() && this._getElements().length > 0 ? this._getElements()[0] : undefined;
 
     if (value === undefined) {
@@ -175,7 +175,7 @@ SlimQuery.prototype.height = function (value) {
 };
 
 
-SlimQuery.prototype.innerHeight = function () {
+$.prototype.innerHeight = function () {
     const element = this._getElements() && this._getElements().length > 0 ? this._getElements()[0] : undefined;
 
     if (element === window) {
@@ -187,7 +187,7 @@ SlimQuery.prototype.innerHeight = function () {
 };
 
 
-SlimQuery.prototype.innerWidth = function () {
+$.prototype.innerWidth = function () {
     const element = this._getElements() && this._getElements().length > 0 ? this._getElements()[0] : undefined;
 
     if (element === window) {
@@ -198,7 +198,7 @@ SlimQuery.prototype.innerWidth = function () {
     return undefined;
 };
 
-SlimQuery.prototype.outerHeight = function (includeMargin) {
+$.prototype.outerHeight = function (includeMargin) {
     const element = this._getElements() && this._getElements().length > 0 ? this._getElements()[0] : undefined;
 
     if (element === window) {
@@ -215,7 +215,7 @@ SlimQuery.prototype.outerHeight = function (includeMargin) {
 };
 
 
-SlimQuery.prototype.outerWidth = function (includeMargin) {
+$.prototype.outerWidth = function (includeMargin) {
     const element = this._getElements() && this._getElements().length > 0 ? this._getElements()[0] : undefined;
 
     if (element === window) {
@@ -232,7 +232,7 @@ SlimQuery.prototype.outerWidth = function (includeMargin) {
 };
 
 
-SlimQuery.prototype.scrollTop = function (value) {
+$.prototype.scrollTop = function (value) {
     const element = this._getElements()[0];
     if (value === undefined) {
         // スクロール位置を取得
@@ -248,7 +248,7 @@ SlimQuery.prototype.scrollTop = function (value) {
     }
 };
 
-SlimQuery.prototype.scrollLeft = function (value) {
+$.prototype.scrollLeft = function (value) {
     const element = this._getElements()[0];
 
     if (value === undefined) {

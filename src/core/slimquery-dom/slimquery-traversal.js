@@ -1,7 +1,7 @@
-const { SlimQuery, createSlimQuery } = require('../slimquery-core.js');
+const { SlimQuery: $, createSlimQuery: $create } = require('../slimquery-core.js');
 //親要素、子要素、兄弟要素などの移動に関連するメソッド
 
-SlimQuery.prototype.siblings = function () {
+$.prototype.siblings = function () {
     const siblingsArray = [];
     this.each(element => {
         // `sibling !== element` の条件により、現在の要素 (`element`) は兄弟リストから除外されます。
@@ -9,11 +9,11 @@ SlimQuery.prototype.siblings = function () {
         siblingsArray.push(...siblingElements);
     });
 
-    return createSlimQuery(siblingsArray);
+    return $create(siblingsArray);
 };
 
 
-SlimQuery.prototype.children = function (selector) {
+$.prototype.children = function (selector) {
     const childrenElements = [];
     this.each(element => {
         let children = Array.from(element.children); // 子要素を配列に変換
@@ -26,21 +26,21 @@ SlimQuery.prototype.children = function (selector) {
 
     });
 
-    return createSlimQuery(childrenElements);
+    return $create(childrenElements);
 };
 
-SlimQuery.prototype.find = function (selector) {
+$.prototype.find = function (selector) {
     const findElements = [];
     this.each(element => {
         let nodeList = element.querySelectorAll(selector);
         findElements.push(...Array.from(nodeList));
     });
 
-    return createSlimQuery(findElements);
+    return $create(findElements);
 };
 
 
-SlimQuery.prototype.prev = function (selector) {
+$.prototype.prev = function (selector) {
     const prevElements = [];
 
     this.each(element => {
@@ -51,11 +51,11 @@ SlimQuery.prototype.prev = function (selector) {
         }
     });
 
-    return createSlimQuery(prevElements);
+    return $create(prevElements);
 };
 
 
-SlimQuery.prototype.next = function (selector) {
+$.prototype.next = function (selector) {
     const nextElements = [];
 
     this.each(element => {
@@ -66,26 +66,26 @@ SlimQuery.prototype.next = function (selector) {
         }
     });
 
-    return createSlimQuery(nextElements);
+    return $create(nextElements);
 };
 
-SlimQuery.prototype.first = function() {
+$.prototype.first = function () {
     const elements = this._getElements();
-    return createSlimQuery(elements.length > 0 ? [elements[0]] : []);
+    return $create(elements.length > 0 ? [elements[0]] : []);
 };
 
-SlimQuery.prototype.last = function() {
+$.prototype.last = function () {
     const elements = this._getElements();
-    return createSlimQuery(elements.length > 0 ? [elements[elements.length - 1]] : []);
+    return $create(elements.length > 0 ? [elements[elements.length - 1]] : []);
 };
 
-SlimQuery.prototype.eq = function(index) {
+$.prototype.eq = function (index) {
     const elements = this._getElements();
-    return createSlimQuery(index >= 0 && index < elements.length ? [elements[index]] : []);
+    return $create(index >= 0 && index < elements.length ? [elements[index]] : []);
 };
 
 
-SlimQuery.prototype.parent = function (selector) {
+$.prototype.parent = function (selector) {
     const parents = [];
     this.each(element => {
         const parent = element.parentElement;
@@ -95,11 +95,11 @@ SlimQuery.prototype.parent = function (selector) {
         }
     });
 
-    return createSlimQuery(parents); //対象セレクタとする
+    return $create(parents); //対象セレクタとする
 };
 
 
-SlimQuery.prototype.parents = function (selector) {
+$.prototype.parents = function (selector) {
     const parents = [];
 
     this.each(element => {
@@ -113,5 +113,5 @@ SlimQuery.prototype.parents = function (selector) {
         }
     });
 
-    return createSlimQuery(parents);
+    return $create(parents);
 };
