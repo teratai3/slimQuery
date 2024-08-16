@@ -54,7 +54,7 @@
         }
     }
 
-    // //静的メソッド
+    // //静的メソッド そのままプロパティで設定
     // Object.defineProperty(SlimQuery.prototype, 'length', {
     //     get: function () {
     //         return this._getElements().length;

@@ -5,3 +5,9 @@ SlimQuery.prototype.remove = function () {
         element.remove();
     });
 };
+
+SlimQuery.prototype.empty = function () {
+    return this.each(element => {
+        element.textContent = '';
+    });
+};
