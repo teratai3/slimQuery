@@ -70,17 +70,17 @@ $.prototype.next = function (selector) {
 };
 
 $.prototype.first = function () {
-    const elements = this._getElements();
+    const elements = this.elements;
     return $create(elements.length > 0 ? [elements[0]] : []);
 };
 
 $.prototype.last = function () {
-    const elements = this._getElements();
+    const elements = this.elements;
     return $create(elements.length > 0 ? [elements[elements.length - 1]] : []);
 };
 
 $.prototype.eq = function (index) {
-    const elements = this._getElements();
+    const elements = this.elements;
     return $create(index >= 0 && index < elements.length ? [elements[index]] : []);
 };
 

@@ -23,11 +23,10 @@
                         this.#elements = document.querySelectorAll(selector);
                 }
             }
-
-            this.length = this.#elements.length;
         }
 
-        _getElements() {
+        get elements() {
+            //getのみを提供
             return this.#elements;
         }
 
@@ -48,6 +47,10 @@
             }
         }
 
+        get length(){
+            return this.#elements.length;
+        }
+
         // 静的メソッドで、プラグイン機能を追加
         static extend(name, method) {
             SlimQuery.prototype[name] = method;
@@ -57,7 +60,7 @@
     // //静的メソッド そのままプロパティで設定
     // Object.defineProperty(SlimQuery.prototype, 'length', {
     //     get: function () {
-    //         return this._getElements().length;
+    //         return this.elements.length;
     //     }
     // });
 

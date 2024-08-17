@@ -17,3 +17,4 @@ require('./core/slimquery-dom/slimquery-traversal.js');
 // 拡張機能 必要に応じて(jqueryのプラグイン相当)
 require('./extensions/animation.js');
 require('./extensions/slide-transition.js');
+require('./extensions/scroll-to.js');

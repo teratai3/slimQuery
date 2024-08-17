@@ -19,7 +19,7 @@ $.prototype.toggleClass = function (className) {
 };
 
 $.prototype.hasClass = function (className) {
-    const elements = Array.from(this._getElements());
+    const elements = Array.from(this.elements);
     return elements.some(element => {
         return element.classList.contains(className);
     });
@@ -37,7 +37,7 @@ $.prototype.css = function (property, value) {
         });
     } else if (value === undefined) {
         // 値が指定されていない場合、最初の要素のスタイルプロパティを取得
-        const element = this._getElements() && this._getElements().length > 0 ? this._getElements()[0] : undefined;
+        const element = this.elements && this.elements.length > 0 ? this.elements[0] : undefined;
         if (element) {
             return window.getComputedStyle(element)[property];
         }

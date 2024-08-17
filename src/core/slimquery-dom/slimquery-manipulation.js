@@ -48,7 +48,7 @@ $.prototype.attr = function (name, value) {
 
 $.prototype.data = function (name, value) {
     if (value === undefined) {
-        const element = this._getElements()[0];
+        const element = this.elements[0];
         if (element) {
             return element.dataset[name];
         }
@@ -101,7 +101,7 @@ $.prototype.wrap = function (wrapper) {
             wrapperElement = wrapper.cloneNode(true);
         } else if (wrapper instanceof SlimQuery) {
             // SlimQueryオブジェクトが渡された場合
-            wrapperElement = wrapper._getElements()[0].cloneNode(true);
+            wrapperElement = wrapper.elements[0].cloneNode(true);
         }
 
         // 元の要素をラップする
@@ -132,7 +132,7 @@ $.prototype.height = function (value) {
 
 
 $.prototype.width = function (value) {
-    const element = this._getElements() && this._getElements().length > 0 ? this._getElements()[0] : undefined;
+    const element = this.elements && this.elements.length > 0 ? this.elements[0] : undefined;
 
     if (value === undefined) {
         // 値が指定されていない場合、幅を取得
@@ -154,7 +154,7 @@ $.prototype.width = function (value) {
 
 
 $.prototype.height = function (value) {
-    const element = this._getElements() && this._getElements().length > 0 ? this._getElements()[0] : undefined;
+    const element = this.elements && this.elements.length > 0 ? this.elements[0] : undefined;
 
     if (value === undefined) {
         // 高さを取得
@@ -176,7 +176,7 @@ $.prototype.height = function (value) {
 
 
 $.prototype.innerHeight = function () {
-    const element = this._getElements() && this._getElements().length > 0 ? this._getElements()[0] : undefined;
+    const element = this.elements && this.elements.length > 0 ? this.elements[0] : undefined;
 
     if (element === window) {
         return window.innerHeight; // windowオブジェクトの場合
@@ -188,7 +188,7 @@ $.prototype.innerHeight = function () {
 
 
 $.prototype.innerWidth = function () {
-    const element = this._getElements() && this._getElements().length > 0 ? this._getElements()[0] : undefined;
+    const element = this.elements && this.elements.length > 0 ? this.elements[0] : undefined;
 
     if (element === window) {
         return window.innerWidth; // windowオブジェクトの場合
@@ -199,7 +199,7 @@ $.prototype.innerWidth = function () {
 };
 
 $.prototype.outerHeight = function (includeMargin) {
-    const element = this._getElements() && this._getElements().length > 0 ? this._getElements()[0] : undefined;
+    const element = this.elements && this.elements.length > 0 ? this.elements[0] : undefined;
 
     if (element === window) {
         return window.outerHeight; // windowオブジェクトの場合
@@ -216,7 +216,7 @@ $.prototype.outerHeight = function (includeMargin) {
 
 
 $.prototype.outerWidth = function (includeMargin) {
-    const element = this._getElements() && this._getElements().length > 0 ? this._getElements()[0] : undefined;
+    const element = this.elements && this.elements.length > 0 ? this.elements[0] : undefined;
 
     if (element === window) {
         return window.outerWidth; // windowオブジェクトの場合
@@ -233,7 +233,7 @@ $.prototype.outerWidth = function (includeMargin) {
 
 
 $.prototype.scrollTop = function (value) {
-    const element = this._getElements()[0];
+    const element = this.elements[0];
     if (value === undefined) {
         // スクロール位置を取得
         return element.scrollTop || document.documentElement.scrollTop;
@@ -249,7 +249,7 @@ $.prototype.scrollTop = function (value) {
 };
 
 $.prototype.scrollLeft = function (value) {
-    const element = this._getElements()[0];
+    const element = this.elements[0];
 
     if (value === undefined) {
         // スクロール位置を取得
@@ -264,3 +264,23 @@ $.prototype.scrollLeft = function (value) {
         return this;
     }
 };
+
+$.prototype.offset = function () {
+    // 位置情報を取得する場合
+    const element = this.elements[0];
+
+    if (!element.getClientRects().length) {
+        // 非表示などの場合は、getClientRectsは0を返すので returnするように
+        return { top: 0, left: 0 };
+    }
+
+    const rect = element.getBoundingClientRect();
+
+    const scrollLeft = window.scrollX;
+    const scrollTop = window.scrollY;
+
+    return {
+        top: rect.top + scrollTop,
+        left: rect.left + scrollLeft
+    };
+}
