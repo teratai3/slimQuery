@@ -8,7 +8,7 @@
 
             element.style.transition = transitionValues.join(', ');
 
-            // プロパティを適用して遷移をトリガーします
+            // transitionを適用した後にアニメーションが開始されない可能性があるのでsetTimeout 0をいれるハック
             setTimeout(() => {
                 for (let prop in properties) {
                     element.style[prop] = properties[prop];
@@ -27,38 +27,4 @@
             element.addEventListener('transitionend', transitionEndHandler);
         });
     });
-
-    $.extend('slideDown', function (duration, ease, callback, delay = 0) {
-        const position = this.css('position');
-
-        this.show().css({
-            position: 'absolute',
-            visibility: 'hidden'
-        });
-
-
-        const marginTop = this.css('margin-top');
-        const marginBottom = this.css('margin-bottom');
-        const paddingTop = this.css('padding-top');
-        const paddingBottom = this.css('padding-bottom');
-        const height = this.css('height');
-
-        this.css({
-            position: position,
-            visibility: 'visible',
-            overflow: 'hidden',
-            height: 0,
-            marginTop: 0,
-            marginBottom: 0,
-            paddingTop: 0,
-            paddingBottom: 0
-        }).animate({
-            height: height,
-            marginTop: marginTop,
-            marginBottom: marginBottom,
-            paddingTop: paddingTop,
-            paddingBottom: paddingBottom
-        }, duration, ease, callback, delay);
-    });
-
 })(slimQuery);
