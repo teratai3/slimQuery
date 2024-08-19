@@ -1,9 +1,14 @@
 (function ($) {
     $.extend('animate', function (properties, duration = 400, ease = 'linear', callback, delay = 0) {
+        function camelToHyphen(str) {
+            return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+        }
+
         return this.each(element => {
             const transitionValues = [];
             for (let prop in properties) {
-                transitionValues.push(`${prop} ${duration}ms ${ease} ${delay}ms`);
+                const hyphenProp = camelToHyphen(prop); 
+                transitionValues.push(`${hyphenProp} ${duration}ms ${ease} ${delay}ms`);
             }
 
             element.style.transition = transitionValues.join(', ');
