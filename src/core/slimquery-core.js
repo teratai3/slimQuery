@@ -16,7 +16,8 @@
                         } else if (selector instanceof Element) {
                             this.#elements = [selector]; // 単一のDOM要素が渡された場合 (thisなど)
                         } else {
-                            this.#elements = []; // 不明なオブジェクトの場合は空の配列
+                            console.error('不明な、オブジェクトでセレクタを指定しました');
+                            this.#elements =  []; // 不明なオブジェクトの場合は空の配列
                         }
                         break;
                     default:

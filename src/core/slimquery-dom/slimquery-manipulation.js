@@ -268,7 +268,6 @@ $.prototype.scrollLeft = function (value) {
 $.prototype.offset = function () {
     // 位置情報を取得する場合
     const element = this.elements[0];
-
     if (!element.getClientRects().length) {
         // 非表示などの場合は、getClientRectsは0を返すので returnするように
         return { top: 0, left: 0 };
