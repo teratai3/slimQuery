@@ -6,7 +6,8 @@
         target.show().css({
             position: 'absolute',
             visibility: 'hidden',
-            height:'auto' //高さを初期化
+            height:'auto', //高さを初期化
+            display:'block'
         });
 
         const marginTop = target.css('margin-top');
@@ -42,6 +43,8 @@
             const paddingTop = target.css('padding-top');
             const paddingBottom = target.css('padding-bottom');
 
+            console.log(paddingTop);
+
             //最初に高さなどを固定化してアニメーション実行
             target.css({
                 visibility: 'visible',
@@ -50,7 +53,7 @@
                 marginTop: marginTop,
                 marginBottom: marginBottom,
                 paddingTop: paddingTop,
-                paddingBottom: paddingBottom
+                paddingBottom: paddingBottom,
             }).animate({
                 height: 0,
                 marginTop: 0,
